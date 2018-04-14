@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Code Challenge</title>
+</head>
+
+<body>
+    <script>
+        function sudoku2(grid) {
+            function initializeArray(arrLength, fn) {
+                return Array.apply(null, Array(arrLength)).map(function (k, v) {
+                    if (typeof fn == "function") {
+                        return fn(k, v);
+                    }
+                });
+            }
+            let grid1 = initializeArray(9, function (k, v) {
+                return initializeArray(9, function (k1, v1) {
+                    return -1;
+                });
+            });
+            let grid2Key = 0;
+            let grid2 = initializeArray(9, function (k, v) {
+                return [];
+            });
+
+            for (let i = 0, max = grid.length; i < max; i++) {
+                let gridArr = grid[i];
+                for (let j = 0, max1 = gridArr.length; j < max1; j++) {
+                    let v = gridArr[j];
+                    if (v != "." && gridArr.indexOf(v) != gridArr.lastIndexOf(v)) {
+                        return false;
+                    }
+                    grid1[j][i] = v;
+                }
+            }
+            let incBy = 3;
+            let cnt = 0;
+            //loop over the filled grid1
+            for (let i = 0, max = grid1.length; i < 6; i++) {
+                cnt++;
+                let gridArr = grid1[i];
+                for (let j = 0, max1 = gridArr.length; j < max1; j++) {
+                    let v = gridArr[j];
+                    if (j % incBy == 0 && j > 0) {
+                        grid2Key++;
+                    }
+                    if (v != ".") {
+                        if (gridArr.indexOf(v) != gridArr.lastIndexOf(v)) {
+                            return false;
+                        } else if (grid2[grid2Key].includes(v)) {
+                            return false;
+                        }
+                        grid2[grid2Key].push(v);
+                    }
+                }
+                grid2Key -= 2;
+                if (cnt == incBy) {
+                    cnt == 0;
+                    grid2Key += incBy;
+                }
+            }
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>

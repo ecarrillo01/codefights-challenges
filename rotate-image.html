@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Code Challenge</title>
+</head>
+
+<body>
+    <script>
+        // Rotate image
+
+        function rotateImage(arr) {
+            let arr1 = [];
+            for (let i = 0; i < arr.length; i++) {
+                arr1[i] = [];
+                for (let j = 0; j < arr[i].length; j++) {
+                    arr1[i][j] = 0;
+                }
+            }
+            for (let i = 0, max = arr.length; i < max; i++) {
+                let current = arr[i];
+                for (let j = 0, max1 = current.length; j < max1; j++) {
+                    let key1 = max1 - 1 - j;
+                    arr1[i][j] = arr[key1][i];
+                }
+            }
+            return arr1;
+        }
+    </script>
+</body>
+
+</html>
