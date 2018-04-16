@@ -100016,45 +100016,16 @@
             "output": 33978
         };
 
-        function getDuplicatedIndex(n, arr,start) {
-            let end = arr.lastIndexOf(n);
-            if (start < end) {
-                for (let i = start + 1, max = end; i < max; i++) {
-                    let v = arr[i];
-                    if (v == n) {
-                        return i;
-                    }
-                }
-                return end;
-            }
-            return 0;
-        }
-
         function firstDuplicate(a) {
-            let initVal = -1;
-            let duplicatedKey = initVal;
-            for (let i = 0, max = a.length; i < max; i++) {
-                    let dIndex = getDuplicatedIndex(a[i], a,i);
-                    if (dIndex > 0) { //Is duplicated
-                        if (duplicatedKey == -1) {
-                            duplicatedKey = dIndex;
-                        } else {
-                            if (dIndex < duplicatedKey) {
-                                duplicatedKey = dIndex;
-                                console.log("duplicated value=%d duplicated key=%d,i=%d", a[duplicatedKey],
-                                    duplicatedKey, i);
-                                if (duplicatedKey < i) {
-                                    console.log("in this case i is greater than duplicated");
-                                    return duplicatedKey
-                                }
-                            }
-                        }
-                    }
+            let i=a.length;
+            for(let i of a){
+                let pos=Math.abs(i);
+                if(a[pos]<0){
+                   return pos;
+                }
+                a[pos]=a[pos]*-1;
             }
-            if (duplicatedKey > initVal) {
-                return a[duplicatedKey];
-            }
-            return duplicatedKey;
+            return -1;
         }
     </script>
     <p>
