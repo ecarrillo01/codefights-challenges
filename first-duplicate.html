@@ -100016,8 +100016,7 @@
             "output": 33978
         };
 
-        function getDuplicatedIndex(n, arr) {
-            let start = arr.indexOf(n);
+        function getDuplicatedIndex(n, arr,start) {
             let end = arr.lastIndexOf(n);
             if (start < end) {
                 for (let i = start + 1, max = end; i < max; i++) {
@@ -100034,11 +100033,8 @@
         function firstDuplicate(a) {
             let initVal = -1;
             let duplicatedKey = initVal;
-            let seen = [];
             for (let i = 0, max = a.length; i < max; i++) {
-                if (!seen.includes(a[i])) {
-                    seen.push(a[i]);
-                    let dIndex = getDuplicatedIndex(a[i], a);
+                    let dIndex = getDuplicatedIndex(a[i], a,i);
                     if (dIndex > 0) { //Is duplicated
                         if (duplicatedKey == -1) {
                             duplicatedKey = dIndex;
@@ -100054,7 +100050,6 @@
                             }
                         }
                     }
-                }
             }
             if (duplicatedKey > initVal) {
                 return a[duplicatedKey];
