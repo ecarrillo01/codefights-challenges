@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Code Challenge</title>
+</head>
+
+<body>
+    <script>
+        function foo(x) { // some awaitable func
+            return new Promise(r => window.setTimeout(
+                () => r(console.log('foo', x, )),
+                2000
+            ));
+        }
+        // The ideal version if forEach worked with async
+        async function fizz(arr) {
+            await arr.forEach(async (e, i) => {
+                await foo(i);
+            });
+            console.log('done');
+        }
+
+        fizz([1, 2, 3]); // invoke
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Code Challenge</title>
+</head>
+
+<body>
+    <script>
+        // reduce version
+        async function fizz(arr) {
+            await arr.reduce((p, e, i) => p.then(async () => {
+                await foo(e);
+            }), Promise.resolve());
+            console.log('done');
+        }
+
+        function foo(x) { // some awaitable func
+            return new Promise(r => window.setTimeout(
+                () => r(console.log('foo', x, )),
+                2000
+            ));
+        }
+        fizz([1, 2, 3]); // invoke
+    </script>
+</body>
+
+</html>
