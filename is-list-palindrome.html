@@ -8,19 +8,17 @@
 
 <body>
     <script>
-         //Definition for singly-linked list:
-         function ListNode(x) {
-           this.value = x;
-           this.next = null;
-         }
-        
+        //Definition for singly-linked list:
+        function ListNode(x) {
+            this.value = x;
+            this.next = null;
+        }
+
         function isListPalindrome(l) {
             if (l != null && l.next != null) {
                 let arr1 = l.toJSON();
                 let arr2 = [...arr1].reverse();
                 let i = arr1.length;
-                console.log(arr1);
-                console.log(arr2);
                 while (i--) {
                     if (arr1[i] != arr2[i]) {
                         return false;
@@ -30,9 +28,19 @@
             return true;
 
         }
-        //isolated code block
-        {
-        
+
+        function arrayToListNode(arr) {
+            let i=arr.length;
+            let prev=null;
+            let curr=null;
+            while(i--){
+            curr= new ListNode(arr[i]);
+            if(prev){
+                curr.next=prev;
+            }
+            prev=curr;
+            }
+            return prev;
         }
     </script>
 </body>
