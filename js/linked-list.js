@@ -1,6 +1,6 @@
 'use strict';
-let l1 = arrayToListNode([9665]);
-let l2 = arrayToListNode([6933, 8443, 5132, 6809, 8519, 9096]);
+//let l1 = arrayToListNode([9665]);
+//let l2 = arrayToListNode([6933, 8443, 5132, 6809, 8519, 9096]);
 
 function ListNode(x) {
     this.value = x;
@@ -33,7 +33,7 @@ function reverseListNode(a) {
     return a1;
 }
 
-function getLastListItem(l, v) {
+function getLastListItem(l) {
     let tmp = l;
     while (tmp.next) {
         tmp = tmp.next;

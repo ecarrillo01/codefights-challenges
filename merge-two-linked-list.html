@@ -9,8 +9,50 @@
 <body>
     <script src="js/linked-list.js"></script>
     <script>
-        'use strict';
-        console.log("hello");
+        let list1 = arrayToListNode([1, 2, 3]);
+        let list2 = arrayToListNode([4, 5, 6]);
+
+        function mergeTwoLinkedLists(l1, l2) {
+            let tmp1 = l1;
+            let tmp2 = l2;
+            let prev1 = null;
+            let prev2 = null;
+            let l3 = null;
+            let l4 = null;
+            while (tmp1) {
+                while (tmp2) {
+                    if (l3 == null) {
+                        if (tmp1.value < tmp2.value) {
+                            l3 = new ListNode(tmp1.value);
+                            l4 = l3;
+                            l3.next = new ListNode(tmp2.value);
+                        } else {
+                            l3 = new ListNode(tmp2.value);
+                            l4 = l3;
+                            l3.next = new ListNode(tmp1.value);
+                        }
+                        l4 = l4.next;
+                    } else {
+                        if (prev2.value < tmp1.value && tmp1.value < tmp2.value) {
+                            l4.value = tmp1.value;
+                            l4.next = new ListNode(tmp2.value);
+                        } else if (prev2.value < tmp1.value && tmp1.value > tmp2.value) {
+                            l4.value = tmp2.value;
+                            l4.next = new ListNode(tmp1.value);
+                        } else {//Need to fix this
+                            l4.value = tmp2.value;
+                            l4.next = new ListNode(tmp1.value);
+                        }
+                        l4=l4.next;
+                    }
+                    prev2 = tmp2;
+                    tmp2 = tmp2.next
+                }
+                prev1 = tmp1;
+                tmp1 = tmp1.next;
+            }
+            return l3;
+        }
     </script>
 </body>
 
