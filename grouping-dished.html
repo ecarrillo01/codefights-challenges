@@ -35,13 +35,11 @@
                     delete(hTable[i]);
                 } else {
                     hTable[i] = hTable[i].sort();
-                    //arr1.push(hTable[i])
                 }
             }
-            let cnt = 0;
             for (let i of Object.keys(hTable).sort()) {
-                hTable[i].splice(0, 0, i);
-                arr1.push(hTable[i]);
+               // hTable[i].splice(0, 0, i);
+                arr1.push([i,...hTable[i]]);
             }
             return arr1;
         }
