@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Grouping dished</title>
+</head>
+
+<body>
+    <script>
+        'use strict';
+        let dishes = [
+            [
+                ["Salad", "Tomato", "Cucumber", "Salad", "Sauce"],
+                ["Pizza", "Tomato", "Sausage", "Sauce", "Dough"],
+                ["Quesadilla", "Chicken", "Cheese", "Sauce"],
+                ["Sandwich", "Salad", "Bread", "Tomato", "Cheese"]
+            ]
+        ];
+
+        function groupingDishes(_dishes = dishes[0]) {
+            let hTable = {};
+            for (let dish of _dishes) {
+                for (let i = 1, max = dish.length; i < max; i++) {
+                    let ingredient = dish[i];
+                    if (!hTable.hasOwnProperty(ingredient)) {
+                        hTable[ingredient] = [];
+                    }
+                    hTable[ingredient].push(dish[0]);
+                }
+            }
+            let arr1 = [];
+            for (let i in hTable) {
+                if (hTable[i].length === 1) {
+                    delete(hTable[i]);
+                } else {
+                    hTable[i] = hTable[i].sort();
+                    //arr1.push(hTable[i])
+                }
+            }
+            let cnt = 0;
+            for (let i of Object.keys(hTable).sort()) {
+                hTable[i].splice(0, 0, i);
+                arr1.push(hTable[i]);
+            }
+            return arr1;
+        }
+    </script>
+</body>
+
+</html>
