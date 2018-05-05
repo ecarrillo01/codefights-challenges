@@ -21,6 +21,10 @@ function arrayToListNode(arr) {
     return prev;
 }
 
+function createListNode(...a) {
+    return arrayToListNode(a);
+}
+
 function reverseListNode(a) {
     let a1 = null;
     let prev = null;
@@ -33,6 +37,22 @@ function reverseListNode(a) {
     return a1;
 }
 
+function loopOverList(l, fn) {
+    let tmp = l;
+    let k = 0;
+    let prev = null;
+    while (tmp) {
+        let r = fn(k, tmp, prev, tmp.next);
+        if (r === false) {
+            console.log("break at value %s", tmp.value);
+            break;
+        }
+        prev = tmp;
+        tmp = tmp.next;
+        k++;
+    }
+}
+
 function getLastListItem(l) {
     let tmp = l;
     while (tmp.next) {
@@ -41,7 +61,11 @@ function getLastListItem(l) {
     return tmp;
 }
 
-function ListNodeAppend(l, v) {
-    getLastListItem(l).next = new ListNode(v);
-    return l;
+
+function listLength(l) {
+    let cnt = 0;
+    loopOverList(l, function (k, v) {
+        cnt++;
+    });
+    return cnt;
 }

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rearrange last n</title>
+</head>
+
+<body>
+    <script src="js/linked-list.js?v=27"></script>
+    <script>
+        'use strict';
+        let l1 = createListNode(1, 2, 3, 4, 5);
+
+        function rearrangeLastN(l, n) {
+            let l3 = null
+            let l3Tail = null;
+            let rPart = null;
+            if (!l) {
+                return new ListNode();
+            }
+
+            loopOverList(l, function (k, v, prev, next) {
+                rPart = next;
+                if (l3 == null) {
+                    l3 = new ListNode(v.value);
+                    l3Tail = l3;
+                } else {
+                    l3Tail.next = new ListNode(v.value);
+                    l3Tail = l3Tail.next;
+                }
+
+                if (n > 1 && k + 1 == n) {
+                    return false;
+                }
+            });
+            if (rPart) {
+                getLastListItem(rPart).next = l3;
+            }
+            return rPart;
+        }
+    </script>
+</body>
+
+</html>
